@@ -2,7 +2,7 @@
 layout: article
 title: "Let's start blogging (again)...!"
 category: diary
-tag: diary
+tags: diary
 key: 250308-start-blogging
 ---
 
