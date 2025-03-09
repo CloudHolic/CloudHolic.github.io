@@ -31,23 +31,23 @@ key: 250309-quantum-qubit
 그렇다면 만일 qubit를 중첩 상태 없이 0과 1로만 고정시켜서 사용하면 고전적인 컴퓨팅과 동일한게 아닌가? 맞긴 하다. 실제로 중첩을 아예 배제한 채로 qubit를 사용하게 되면 이는 bit와 하등 다를게 없어진다. 이 말은 양자컴퓨터는 (이론상) 고전 컴퓨터가 할 수 있는 모든 일을 할 수 있다. 하지만 지금 qubit는 매우 비싼 자원이라 그렇게 쓸 수 없다. bit는 현재 펑펑 써도 괜찮은 자원이지만 (1GB가 약 86억 bit이다) qubit는 1개 단위로 쓰는 매우 비싼 몸이시다...  
 
 그럼 이런 qubit를 어떻게 수학적으로 기술할 수 있을까? 보통 양자는 Dirac notation으로 기술한다. qubit 또한 양자이므로 이 표기법을 그대로 쓰는 편이다. 다만 qubit는 측정된 값이 0 혹은 1로만 나오도록 가공되었으므로 다음과 같이 간단하게 기술할 수 있다.  
-$$\ket{\Psi} = \left[\begin{array}{c}\Psi_{1}\\\Psi_{2}\end{array}\right],\space\space|\Psi_{1}|^{2} + |\Psi_{2}|^{2} = 1$$  
+$$\\ket{\Psi} = \left[\begin{array}{c}\Psi_{1}\\\Psi_{2}\end{array}\right],\space\space|\Psi_{1}|^{2} + |\Psi_{2}|^{2} = 1$$  
 즉, 2차원 공간에서 길이가 1인 벡터를 이용하여 기술한다. 또한 측정 결과로 나올 수 있는 0, 1값은 다음과 같이 정의된다.  
-$$\ket{0} = \left[\begin{array}{c}1\\0\end{array}\right],\space\space\ket{1} = \left[\begin{array}{c}0\\1\end{array}\right]$$  
+$$\\ket{0} = \left[\begin{array}{c}1\\0\end{array}\right],\space\space\\ket{1} = \left[\begin{array}{c}0\\1\end{array}\right]$$  
 따라서 임의의 qubit는 다음과 같이 표현할 수 있다.  
-$$\ket{\Psi} = \left[\begin{array}{c}\Psi_{1}\\\Psi_{2}\end{array}\right]=\Psi_{1}\ket{0} + \Psi_{2}\ket{1}$$  
+$$\\ket{\Psi} = \left[\begin{array}{c}\Psi_{1}\\\Psi_{2}\end{array}\right]=\Psi_{1}\\ket{0} + \Psi_{2}\\ket{1}$$  
 0의 상태와 1의 상태가 각각 $$\Psi_{1}$$, $$\Psi_{2}$$만큼씩 중첩되어 있으며 이들을 각각 제곱하면 관측할 때 0이 나올 확률과 1이 나올 확률을 알 수 있다. 당연하지만 그 확률의 합은 1이어야 한다.  
 
 이제 아래의 두 qubit를 생각해보자.  
-$$\ket{\Psi_{1}} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1},\space\space\ket{\Psi_{2}} = \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}$$  
+$$\\ket{\Psi_{1}} = \frac{1}{\sqrt{2}}\\ket{0} + \frac{1}{\sqrt{2}}\\ket{1},\space\space\\ket{\Psi_{2}} = \frac{1}{\sqrt{2}}\\ket{0} - \frac{1}{\sqrt{2}}\\ket{1}$$  
 qubit $$\Psi_{1}$$과 $$\Psi_{2}$$는 모두 각각의 상태가 나올 확률이 50%씩이다. 그럼 같은 것이 아니냐고 할 수 있지만, 측정의 방향의 따라서 이 두 qubit는 다른 값을 가질 수 있기 때문에 다른 상태로 취급된다. 이와 같이, 방향까지 중요하게 다뤄지는 구형으로 생각해야 하며 실제로도 그렇다. 그러면 2차원 공간에 한정지어서 생각할 이유도 없지 않을까?  
 
 ![bloch_sphere]({{ "/assets/quantum/bloch_sphere.png" | absolute_url }})  
 
-그래서 위와 같은 구체로도 qubit를 정의할 수 있으며, 이를 Bloch sphere라고 부른다. 3차원 구체형이기 때문에 축은 기존의 $$\ket{0}$$, $$\ket{1}$$ 외에도 $$\ket{+}$$, $$\ket{-}$$, $$\ket{i}$$, $$\ket{-i}$$의 4가지가 더 있으며, 다음과 같이 정의한다.  
-$$\ket{+} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1},\space\space\ket{-} = \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1},\space\space\ket{i} = \frac{1}{\sqrt{2}}\ket{0} + \frac{i}{\sqrt{2}}\ket{1},\space\space\ket{-i} = \frac{1}{\sqrt{2}}\ket{0} - \frac{i}{\sqrt{2}}\ket{1}$$  
+그래서 위와 같은 구체로도 qubit를 정의할 수 있으며, 이를 Bloch sphere라고 부른다. 3차원 구체형이기 때문에 축은 기존의 $$\\ket{0}$$, $$\\ket{1}$$ 외에도 $$\\ket{+}$$, $$\\ket{-}$$, $$\\ket{i}$$, $$\\ket{-i}$$의 4가지가 더 있으며, 다음과 같이 정의한다.  
+$$\\ket{+} = \frac{1}{\sqrt{2}}\\ket{0} + \frac{1}{\sqrt{2}}\\ket{1},\space\space\\ket{-} = \frac{1}{\sqrt{2}}\\ket{0} - \frac{1}{\sqrt{2}}\\ket{1},\space\space\\ket{i} = \frac{1}{\sqrt{2}}\\ket{0} + \frac{i}{\sqrt{2}}\\ket{1},\space\space\\ket{-i} = \frac{1}{\sqrt{2}}\\ket{0} - \frac{i}{\sqrt{2}}\\ket{1}$$  
 그리고 임의의 qubit에 대한 일반적인 형태는 다음과 같이 정의할 수 있다.  
-$$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$  
+$$\\ket{\Psi} = \cos\theta\\ket{0} + \sin\theta e^{i\varphi}\\ket{1}$$  
 
 
 ### Quantum Logic Gate
@@ -84,7 +84,7 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
 
 - **CNOT**(Controlled Not)
     $$CNOT = \left[\begin{array}{cccc}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{array}\right]$$
-    CNOT, 혹은 NOT이 곧 X 연산이므로 CX 연산이라고 부르는 이 연산자는 첫 번째 qubit의 값에 따라 두 번째 qubit에 행해질 연산이 달라지게 된다. 보다 구체적으로, 첫 번째 qubit가 $$\ket{0}$$이라면 아무 연산을 하지 않지만, 첫 번째 qubit가 $$\ket{1}$$이라면 두 번째 qubit에 NOT 연산을 적용한다. 같은 방식으로, CY, CZ 연산도 생각해볼 수 있다.  
+    CNOT, 혹은 NOT이 곧 X 연산이므로 CX 연산이라고 부르는 이 연산자는 첫 번째 qubit의 값에 따라 두 번째 qubit에 행해질 연산이 달라지게 된다. 보다 구체적으로, 첫 번째 qubit가 $$\\ket{0}$$이라면 아무 연산을 하지 않지만, 첫 번째 qubit가 $$\\ket{1}$$이라면 두 번째 qubit에 NOT 연산을 적용한다. 같은 방식으로, CY, CZ 연산도 생각해볼 수 있다.  
     CX 연산은 아무 상관 없는 두 qubit를 서로 얽을 수 있게 해주는 중요한 연산이다. 위의 H Gate와 더불어서, 이 연산은 두 고전 컴퓨팅에서는 이룰 수 없는 연산을 수행하는 양자 컴퓨팅의 핵심 연산 중 하나이다.
 
 - **SWAP** Gate
@@ -97,9 +97,9 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
 
 - **CCNOT** Gate
     $$CCNOT = \left[\begin{array}{cccccccc}1&0&0&0&0&0&0&0\\0&1&0&0&0&0&0&0\\0&0&1&0&0&0&0&0\\0&0&0&1&0&0&0&0\\0&0&0&0&1&0&0&0\\0&0&0&0&0&1&0&0\\0&0&0&0&0&0&0&1\\0&0&0&0&0&0&1&0\end{array}\right]$$
-    CCNOT 연산자는 Toffoli 연산자로도 불리며, 첫 2개의 qubit가 모두 $$\ket{1}$$이어야만 세 번째 qubit에 대해 NOT 연산을 적용한다. NOT 연산자는 곧 X 연산자이므로 CCX 연산으로도 불린다.
+    CCNOT 연산자는 Toffoli 연산자로도 불리며, 첫 2개의 qubit가 모두 $$\\ket{1}$$이어야만 세 번째 qubit에 대해 NOT 연산을 적용한다. NOT 연산자는 곧 X 연산자이므로 CCX 연산으로도 불린다.
 
 - **CSWAP** Gate
     $$CSWAP = \left[\begin{array}{cccccccc}1&0&0&0&0&0&0&0\\0&1&0&0&0&0&0&0\\0&0&1&0&0&0&0&0\\0&0&0&1&0&0&0&0\\0&0&0&0&1&0&0&0\\0&0&0&0&0&0&1&0\\0&0&0&0&0&1&0&0\\0&0&0&0&0&0&0&1\end{array}\right]$$
-    CSWAP 연산자는 Fredkin gate로도 불리며, 첫 qubit가 $$\ket{1}$$이면 다음 2개의 qubit에 대해 SWAP 연산을 적용한다.
+    CSWAP 연산자는 Fredkin gate로도 불리며, 첫 qubit가 $$\\ket{1}$$이면 다음 2개의 qubit에 대해 SWAP 연산을 적용한다.
     
