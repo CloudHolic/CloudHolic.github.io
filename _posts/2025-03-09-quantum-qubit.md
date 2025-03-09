@@ -25,6 +25,7 @@ key: 250309-quantum-qubit
 ### Qubit
 
 고전적인(즉, Non-quantum) 컴퓨터에서 정보를 다루는 최소 단위는 bit이며 다들 알겠지만 이 bit가 다룰 수 있는 정보는 0과 1의 2가지이다.  
+
 그렇다면 양자 컴퓨터에서는 어떨까? 양자 컴퓨터에서 정보를 다루는 최소 단위는 quantum bit, 즉 qubit라고 한다. 양자를 다루는 컴퓨터답게 qubit는 양자 역학의 원리를 이용한 bit이다. 이 말은 즉, qubit 1개에 여러 값을 공존시킬 수 있으며, 측정된 순간 그 중 어느 하나로 값이 정해진다는 의미이다.  
 그런데 양자 1개에 여러 값을 공존시킬 수 있으면 굳이 0과 1로만 나눌 필요도 없지 않을까? 그래서 보다 일반적인 개념으로 qudit라는 것이 등장한다. 굳이 0과 1에 한정하지 않고, 양자 1개가 임의의 N개의 값을 가지는 시스템이다. $$N = 2$$라면 qubit고, $$N = 3$$이라면 qutrit라고 부르는 식이다. 그런데 $$N > 2$$일 경우 하드웨어적으로 이를 효율적으로 구현하기도 어렵고, 소프트웨어적으로도 이를 잘 써먹기 어렵다. 그래서 보통은 그나마 친숙하고 설계하기도 편한 qubit로 대부분의 양자컴퓨터 및 알고리즘을 설계하고 있다.  
 
@@ -62,11 +63,11 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
     $$I = \left[\begin{array}{cc}1&0\\0&1\end{array}\right]$$  
     I Gate는 qubit를 그대로 유지시키는 항등연산자이다.
 
-- **H**(Hadamard) Gate
-    $$H = \frac{1}{\sqrt{2}}\left[\begin{array}{cc}1&1\\1&-1\end{array}\right]$$
+- **H**(Hadamard) Gate  
+    $$H = \frac{1}{\sqrt{2}}\left[\begin{array}{cc}1&1\\1&-1\end{array}\right]$$  
     H Gate는 qubit를 다시 50:50의 중첩 상태로 바꿔주는 연산자이다. 위에도 말했지만 이미 측정된 결과만 가지고 연산을 수행하는 것은 고전적인 bit와 다를게 없기 때문에, 측정된 qubit를 다시 중첩상태로 돌려놓는 이 연산자는 양자 컴퓨팅에서 매우 중요하다.
 
-- Pauli **X**, **Y**, **Z** Gates / Phase Shift Gate / Rotation Gates
+- Pauli **X**, **Y**, **Z** Gates / Phase Shift Gate / Rotation Gates  
     $$X = \left[\begin{array}{cc}0&1\\1&0\end{array}\right],\space Y = \left[\begin{array}{cc}0&-i\\i&0\end{array}\right],\space Z = \left[\begin{array}{cc}1&0\\0&-1\end{array}\right]$$  
     이 연산들은 bloch sphere에서 각각 X, Y, Z축으로 뒤집는 연산이다. 굳이 각 연산의 효과를 적자면 X 연산은 0과 1이 등장할 확률을, Y 연산은 phase를, 그리고 Z 연산은 확률의 방향을 반전시킨다. 다만 X 연산자의 경우 고전 컴퓨팅에서의 NOT gate와 그 결과가 동일하기 떄문에 X 연산자를 NOT 연산자로도 부른다.  
     Z 연산자의 일반화된 버전으로, 반전이 아니라 특정 각도만큼 회전시키는 연산을 생각해볼 수 있다.  
@@ -82,12 +83,12 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
 
 당연한 말이지만, 2개 이상의 qubit를 동시에 다룰 경우에는 이들의 tensor product로 표현한다. 즉 binary operation은 4x4 행렬로 표기된다.
 
-- **CNOT**(Controlled Not)
-    $$CNOT = \left[\begin{array}{cccc}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{array}\right]$$
+- **CNOT**(Controlled Not)  
+    $$CNOT = \left[\begin{array}{cccc}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{array}\right]$$  
     CNOT, 혹은 NOT이 곧 X 연산이므로 CX 연산이라고 부르는 이 연산자는 첫 번째 qubit의 값에 따라 두 번째 qubit에 행해질 연산이 달라지게 된다. 보다 구체적으로, 첫 번째 qubit가 $$\ket{0}$$이라면 아무 연산을 하지 않지만, 첫 번째 qubit가 $$\ket{1}$$이라면 두 번째 qubit에 NOT 연산을 적용한다. 같은 방식으로, CY, CZ 연산도 생각해볼 수 있다.  
     CX 연산은 아무 상관 없는 두 qubit를 서로 얽을 수 있게 해주는 중요한 연산이다. 위의 H Gate와 더불어서, 이 연산은 두 고전 컴퓨팅에서는 이룰 수 없는 연산을 수행하는 양자 컴퓨팅의 핵심 연산 중 하나이다.
 
-- **SWAP** Gate
+- **SWAP** Gate  
     $$SWAP = \left[\begin{array}{cccc}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{array}\right]$$  
     이름에서도 잘 드러나듯 두 qubit의 값을 바꿔준다.
 
@@ -95,11 +96,11 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
 
 위와 같은 이유로 ternary operation은 8x8 행렬로 표기된다.
 
-- **CCNOT** Gate
-    $$CCNOT = \left[\begin{array}{cccccccc}1&0&0&0&0&0&0&0\\0&1&0&0&0&0&0&0\\0&0&1&0&0&0&0&0\\0&0&0&1&0&0&0&0\\0&0&0&0&1&0&0&0\\0&0&0&0&0&1&0&0\\0&0&0&0&0&0&0&1\\0&0&0&0&0&0&1&0\end{array}\right]$$
+- **CCNOT** Gate  
+    $$CCNOT = \left[\begin{array}{cccccccc}1&0&0&0&0&0&0&0\\0&1&0&0&0&0&0&0\\0&0&1&0&0&0&0&0\\0&0&0&1&0&0&0&0\\0&0&0&0&1&0&0&0\\0&0&0&0&0&1&0&0\\0&0&0&0&0&0&0&1\\0&0&0&0&0&0&1&0\end{array}\right]$$  
     CCNOT 연산자는 Toffoli 연산자로도 불리며, 첫 2개의 qubit가 모두 $$\ket{1}$$이어야만 세 번째 qubit에 대해 NOT 연산을 적용한다. NOT 연산자는 곧 X 연산자이므로 CCX 연산으로도 불린다.
 
-- **CSWAP** Gate
-    $$CSWAP = \left[\begin{array}{cccccccc}1&0&0&0&0&0&0&0\\0&1&0&0&0&0&0&0\\0&0&1&0&0&0&0&0\\0&0&0&1&0&0&0&0\\0&0&0&0&1&0&0&0\\0&0&0&0&0&0&1&0\\0&0&0&0&0&1&0&0\\0&0&0&0&0&0&0&1\end{array}\right]$$
+- **CSWAP** Gate  
+    $$CSWAP = \left[\begin{array}{cccccccc}1&0&0&0&0&0&0&0\\0&1&0&0&0&0&0&0\\0&0&1&0&0&0&0&0\\0&0&0&1&0&0&0&0\\0&0&0&0&1&0&0&0\\0&0&0&0&0&0&1&0\\0&0&0&0&0&1&0&0\\0&0&0&0&0&0&0&1\end{array}\right]$$  
     CSWAP 연산자는 Fredkin gate로도 불리며, 첫 qubit가 $$\ket{1}$$이면 다음 2개의 qubit에 대해 SWAP 연산을 적용한다.
     
