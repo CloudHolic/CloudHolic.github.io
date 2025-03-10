@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "양자 알고리즘 0 - 큐비트"
+title: "양자 알고리즘 1 - 큐비트"
 category: "Quantum Algorithm"
 tags: "Quantum Algorithm"
 key: 250309-quantum-qubit
@@ -85,8 +85,8 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
 
 - **CNOT**(Controlled Not)  
     $$CNOT = \left[\begin{array}{cccc}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{array}\right]$$  
-    CNOT, 혹은 NOT이 곧 X 연산이므로 CX 연산이라고 부르는 이 연산자는 첫 번째 qubit의 값에 따라 두 번째 qubit에 행해질 연산이 달라지게 된다. 보다 구체적으로, 첫 번째 qubit가 $$\ket{0}$$이라면 아무 연산을 하지 않지만, 첫 번째 qubit가 $$\ket{1}$$이라면 두 번째 qubit에 NOT 연산을 적용한다. 같은 방식으로, CY, CZ 연산도 생각해볼 수 있다.  
-    CX 연산은 아무 상관 없는 두 qubit를 서로 얽을 수 있게 해주는 중요한 연산이다. 위의 H Gate와 더불어서, 이 연산은 두 고전 컴퓨팅에서는 이룰 수 없는 연산을 수행하는 양자 컴퓨팅의 핵심 연산 중 하나이다.
+    CNOT, 혹은 NOT이 곧 X이므로 CX Gate라고도 부르는 이 연산자는 첫 번째 qubit의 값에 따라 두 번째 qubit에 행해질 연산이 달라지게 된다. 보다 구체적으로, 첫 번째 qubit가 $$\ket{0}$$이라면 아무 연산을 하지 않지만, 첫 번째 qubit가 $$\ket{1}$$이라면 두 번째 qubit에 NOT 연산을 적용한다. 같은 방식으로, CY, CZ 연산도 생각해볼 수 있다.  
+    CX Gate는 아무 상관 없는 두 qubit를 서로 얽을 수 있게 해주는 중요한 연산이다. 위의 H Gate와 더불어서, 이 연산은 두 고전 컴퓨팅에서는 이룰 수 없는 연산을 수행하는 양자 컴퓨팅의 핵심 연산 중 하나이다.
 
 - **SWAP** Gate  
     $$SWAP = \left[\begin{array}{cccc}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{array}\right]$$  
@@ -98,9 +98,9 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
 
 - **CCNOT** Gate  
     $$CCNOT = \left[\begin{array}{cccccccc}1&0&0&0&0&0&0&0\\0&1&0&0&0&0&0&0\\0&0&1&0&0&0&0&0\\0&0&0&1&0&0&0&0\\0&0&0&0&1&0&0&0\\0&0&0&0&0&1&0&0\\0&0&0&0&0&0&0&1\\0&0&0&0&0&0&1&0\end{array}\right]$$  
-    CCNOT 연산자는 Toffoli 연산자로도 불리며, 첫 2개의 qubit가 모두 $$\ket{1}$$이어야만 세 번째 qubit에 대해 NOT 연산을 적용한다. NOT 연산자는 곧 X 연산자이므로 CCX 연산으로도 불린다.
+    CCNOT Gate는 Toffoli 연산자로도 불리며, 첫 2개의 qubit가 모두 $$\ket{1}$$이어야만 세 번째 qubit에 대해 NOT 연산을 적용한다. NOT 연산자는 곧 X 연산자이므로 CCX 연산으로도 불린다.
 
 - **CSWAP** Gate  
     $$CSWAP = \left[\begin{array}{cccccccc}1&0&0&0&0&0&0&0\\0&1&0&0&0&0&0&0\\0&0&1&0&0&0&0&0\\0&0&0&1&0&0&0&0\\0&0&0&0&1&0&0&0\\0&0&0&0&0&0&1&0\\0&0&0&0&0&1&0&0\\0&0&0&0&0&0&0&1\end{array}\right]$$  
-    CSWAP 연산자는 Fredkin gate로도 불리며, 첫 qubit가 $$\ket{1}$$이면 다음 2개의 qubit에 대해 SWAP 연산을 적용한다.
+    CSWAP Gate는 Fredkin Gate로도 불리며, 첫 qubit가 $$\ket{1}$$이면 다음 2개의 qubit에 대해 SWAP 연산을 적용한다.
     
