@@ -27,12 +27,9 @@ P에 대응되는 양자 알고리즘의 분류는 **EQP**이다. EQP(Exact Quan
 
 그럼 이제 P/NP와 BQP/QMA 간의 관계를 생각해보자. 일단 명확히 해야 할 점은, 위의 네 집합 간의 관계는 아직 아무것도 증명되진 않았다. 다만 지금 시점에서 확실히 밝혀진 정보들, 그리고 이를 바탕으로 대부분의 사람들이 추측하는 관계를 정리해보면 다음과 같다.  
 
-1. $$P \subseteq BQP \subseteq NP$$
-
+  - $$P \subseteq BQP \subseteq NP$$
   즉, BQP에 속하지만 P문제는 아닌 문제가 존재하며 (대표적으로 Shor's algorithm), NP-Complete 문제 또한 딱히 BQP가 아님을 의미한다. 즉, 세간의 믿음과는 다르게 NP-Complete 문제는 양자 컴퓨터를 이용하더라도 여전히 다항 시간 안에 해결하긴 어려울 것으로 보인다.
-
-2. $$NP \subseteq MQA \subseteq PSPACE$$
-
+  - $$NP \subseteq MQA \subseteq PSPACE$$
   그렇다면 MQA는 어떨까? MQA는 기존의 NP가 아닌 PSPACE와 비교한다. **PSPACE**(Polynomial SPACE)는 고전 컴퓨터가 시간은 얼마든지 쓸 수 있되 다항 공간만 써서 풀 수 있는 문제들의 집합을 뜻한다. 그리고 현재까지는 MQA는 PSPACE의 부분집합이라고 추측되고 있다.
 
 즉, 이상의 관계를 정리해보면 양자 알고리즘은 기존 NP 문제들을 전부 다항 시간 안에 해결해주는 만능의 도구는 아니라는 것을 알 수 있다. 하지만 NP 문제들 중 일부를 다항 시간 안에 풀 수 있음이 증명되었고, 그 중 하나가 하필이면 소인수분해를 다루는 Shor's algorithm이라는 점에서, 그리고 앞으로 또 어떤 양자 알고리즘이 개발될지 알 수 없다는 점에서 잠재력은 무궁무진한 것 같다.
