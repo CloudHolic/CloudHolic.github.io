@@ -3,6 +3,7 @@ title: "양자 알고리즘 1 - 큐비트"
 date: 2025-03-09 13:18:08
 categories: ["Quantum Algorithm"]
 tags: ["Quantum"]
+math: true
 ---
 
 ### Before starting
