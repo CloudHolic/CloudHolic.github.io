@@ -43,7 +43,7 @@ $$\ket{\Psi} = \left[\begin{array}{c}\Psi_{1}\\\Psi_{2}\end{array}\right]=\Psi_{
 $$\ket{\Psi_{1}} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1},\space\space\ket{\Psi_{2}} = \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1}$$  
 qubit $$\Psi_{1}$$과 $$\Psi_{2}$$는 모두 각각의 상태가 나올 확률이 50%씩이다. 그럼 같은 것이 아니냐고 할 수 있지만, 측정의 방향의 따라서 이 두 qubit는 다른 값을 가질 수 있기 때문에 다른 상태로 취급된다. 이와 같이, 방향까지 중요하게 다뤄지는 구형으로 생각해야 하며 실제로도 그렇다. 그러면 2차원 공간에 한정지어서 생각할 이유도 없지 않을까?  
 
-![bloch_sphere]("/assets/img/quantum/bloch_sphere.jfif")  
+![bloch_sphere](/assets/img/quantum/bloch_sphere.jfif)
 
 그래서 위와 같은 구체로도 qubit를 정의할 수 있으며, 이를 Bloch sphere라고 부른다. 3차원 구체형이기 때문에 축은 기존의 $$\ket{0}$$, $$\ket{1}$$ 외에도 $$\ket{+}$$, $$\ket{-}$$, $$\ket{i}$$, $$\ket{-i}$$의 4가지가 더 있으며, 다음과 같이 정의한다.  
 $$\ket{+} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1},\space\space\ket{-} = \frac{1}{\sqrt{2}}\ket{0} - \frac{1}{\sqrt{2}}\ket{1},\space\space\ket{i} = \frac{1}{\sqrt{2}}\ket{0} + \frac{i}{\sqrt{2}}\ket{1},\space\space\ket{-i} = \frac{1}{\sqrt{2}}\ket{0} - \frac{i}{\sqrt{2}}\ket{1}$$  
