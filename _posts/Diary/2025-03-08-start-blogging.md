@@ -1,6 +1,6 @@
 ---
 title: "블로그 개설"
-date: 2025-03-08 13:15:49
+date: 2025-03-08 13:15:49 +0900
 categories: ["Diary"]
 tags: ["Diary"]
 ---

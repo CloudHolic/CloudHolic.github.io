@@ -1,6 +1,6 @@
 ---
 title: "양자 알고리즘 2 - 복잡도"
-date: 2025-03-12 14:52:32
+date: 2025-03-12 14:52:32 +0900
 categories: ["Study", "Quantum Algorithm"]
 tags: ["Study", "Quantum"]
 math: true
