@@ -1,5 +1,5 @@
 ---
-title: "블로그 개설"
+title: "2026년 맞이 블로그 리뉴얼"
 date: 2026-01-16 10:50:57
 categories: ["Diary"]
 tags: ["Diary"]
