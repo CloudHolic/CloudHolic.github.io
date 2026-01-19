@@ -1,8 +1,8 @@
 ---
 title: "양자 알고리즘 1 - 큐비트"
 date: 2025-03-09 13:18:08 +0900
-categories: ["Study", "Quantum Algorithm"]
-tags: ["Study", "Quantum"]
+categories: ["Study", "Quantum"]
+tags: ["Quantum"]
 math: true
 ---
 
