@@ -16,7 +16,7 @@ order: 4
 - 마찬가지로 실무 프로젝트를 수행한 적이 있었던 React, Typescript, Electron
 - 함수형 언어, 그 중에서도 특히 F#
 - C/C++/NASM 등의 로우레벨 환경
-- Python, accelerate, transformers 등 AI/딥러닝 관련 생태계를 배워나가는 중
+- Python, Kaggle, HuggingFace 등 AI/딥러닝 관련 생태계 및 이론을 배워나가는 중
 
 ### Interestings
 - Unity와 Unreal 등의 게임엔진
