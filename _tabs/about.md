@@ -20,7 +20,7 @@ order: 4
 
 ### Interestings
 - Unity와 Unreal 등의 게임엔진
-- ASP.NET이나 express, fastapi 등의 백엔드 프레임워크 및 AWS 등의 Ops 계열
+- ASP.NET이나 express, fastapi 등의 백엔드 프레임워크
 - 양자 컴퓨팅 및 양자 알고리즘
 - 그 외에도 프로그래밍 언어 자체에 대한 관심이 상당한 편이라 주로 쓰이는 대부분의 언어를 알고 있음
 
