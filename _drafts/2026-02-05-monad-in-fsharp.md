@@ -1,12 +1,12 @@
 ---
 title: "Monad in F#"
-date: 2026-02-05 13:28:30 +0900
+date: 2026-02-08 13:28:30 +0900
 categories: ["Study", "Functional"]
 tags: ["Functional", "F#"]
 math: true
 ---
 
-### Prerequisites
+### Before Reading
 
 ![저번 글](https://cloudholic.github.io/posts/monad/)에서 모나드에 대해 알아봤다. 모나드를 한 마디로 요약하면 side-effect를 함수형 언어의 방식으로 처리하는 이론적 배경이자 디자인 패턴이다. 그만큼 함수형 언어에서의 핵심 개념이기 때문에 함수형이 주인 언어에서는 이 모나드를 사용할 다양한 방법들을 매우 직설적으로 제공해준다. 실제로 하스켈에서는 이 모나드가 이름 그대로 Monad라고 정의되어 있으며, 그 내용도 모나드의 수학적 정의와 크게 다르지 않다. 그런데 유독 .NET 기반의 함수형 언어인 F#에서는 모나드라는 단어가 직접적으로 표시되지 않고 숨겨져 있다.
 
