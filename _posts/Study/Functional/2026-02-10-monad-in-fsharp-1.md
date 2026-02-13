@@ -1,5 +1,5 @@
 ---
-title: "Monad in F#"
+title: "Monad in F# 1"
 date: 2026-02-10 12:20:30 +0900
 categories: ["Study", "Functional"]
 tags: ["Functional", "F#"]
@@ -8,7 +8,7 @@ math: true
 
 ### Before starting
 
-[저번 글](https://cloudholic.github.io/posts/monad-1/)에서 모나드에 대해 알아봤다. 모나드를 한 마디로 요약하면 side-effect를 함수형 언어의 방식으로 처리하는 이론적 배경이자 디자인 패턴이다. 그만큼 함수형 언어에서의 핵심 개념이기 때문에 함수형이 주인 언어에서는 이 모나드를 사용할 다양한 방법들을 매우 직설적으로 제공해준다. 실제로 하스켈에서는 이 모나드가 이름 그대로 Monad라고 정의되어 있으며, 그 내용도 모나드의 수학적 정의와 크게 다르지 않다. 그런데 유독 .NET 기반의 함수형 언어인 F#에서는 모나드라는 단어가 직접적으로 표시되지 않고 숨겨져 있다.
+[저번 글](https://cloudholic.github.io/posts/monad-1/)에서 모나드에 대해 알아봤다. 모나드를 한 마디로 요약하면 side-effect를 함수형 언어의 방식으로 처리하는 이론적 배경이자 디자인 패턴이다. 그만큼 함수형 언어에서의 핵심 개념이기 때문에 함수형이 주인 언어에서는 이 모나드를 사용할 다양한 방법들을 매우 직설적으로 제공해준다. 실제로 하스켈에서는 이 모나드가 이름 그대로 Monad라고 정의되어 있으며, 그 내용도 모나드의 수학적 정의와 크게 다르지 않다. 그런데 특이하게 .NET 기반의 함수형 언어인 F#에서는 모나드라는 단어가 직접적으로 표시되지 않고 숨겨져 있다.
 
 ### Computation Expression
 
@@ -59,7 +59,7 @@ let seqC = seq {
 
 `seqC`의 경우 `yield!`라는 키워드가 쓰였는데, 이는 `let`과 `let!`의 관계와 동일하다. 즉, 계산식 안의 내부 원소들을 꺼내서 `yield` 작업을 수행하는 것이라고 보면 된다. 이중 시퀀스를 단일 시퀀스로 펼치는 작업이기 때문에 이를 flatten이라고 부른다.
 
-그 외에도 `Seq.empty`, `Seq.init`, `Seq.singleton` 등 다양한 보조 함수들이 정의되어 있다. 그런데 주의할 점은 `seq`에는 `let!` 바인딩이 존재하지 않는다. 이에 대한 자세한 내용은 후술한다.
+그 외에도 `Seq.empty`, `Seq.init`, `Seq.singleton` 등 다양한 보조 함수들이 정의되어 있다. 그런데 주의할 점은 `seq`에는 `let!` 바인딩이 존재하지 않는다. 이는 `seq`가 값 생성에 특화되어서 이전 값에 의존하는 순차적 계산이 필요하지 않기 때문이다. 이에 대한 자세한 내용은 후술한다.
 
 
 #### async
@@ -99,6 +99,7 @@ let (result1 : Async<byte[]>) = stream.AsyncRead(bufferSize)
 
 let! (result2 : byte[]) = stream.AsyncRead(bufferSize)
 ```
+
 우선 계산식 안의 값을 직접 바인딩을 시켜주는 `let!`의 특성상 `async` 계산식을 `let!`으로 바인딩하게 되면 C#에서의 `await`와 같은 효과를 내게 된다. 즉, 해당 비동기 작업을 완료하고 그 값을 가져올 때까지 기다리게 된다. 또한 `use!` 키워드를 쓸 수 있는데, 이는 C#에서의 `await using`과 동일하다. 즉, `use`는 C#의 `IDisposable`을, `use!`는 C#의 `IAsyncDisposable`에 대응된다고 보면 된다.
 
 
@@ -246,7 +247,9 @@ member Delay: (unit -> M<'T>) -> Delayed<'T>
 
 
 ``` fsharp
-member Run: Delayed<'T> -> M<'T> // or M<'T> -> 'T
+// 이하의 타입들 중 하나 선택
+member Run: Delayed<'T> -> M<'T> 
+member Run: M<'T> -> 'T
 ```
 
 그렇게 지연된 계산을 실행하게 해주는 함수가 `Run`이다. `Delayed<'T>`를 계산해서 `M<'T>`를 가져오게 하거나, 혹은 `M<'T>`를 계산해서 그 안에 있는 `'T`를 꺼내게 한다.
@@ -266,7 +269,9 @@ builder.Run(builder.Delay(fun () -> builder.Return(42)))
 #### Combine
 
 ``` fsharp
-member Combine: M<'T> * Delayed<'T> -> M<'T> // or M<unit> * M<'T> -> M<'T>
+// 이하의 타입들 중 하나 선택
+member Combine: M<'T> * Delayed<'T> -> M<'T> 
+member Combine: M<unit> * M<'T> -> M<'T>
 ```
 
 두 개의 계산을 이어붙인다. 보통 한 계산식 내에서 큰 연관은 없는 작업을 연달아 수행할 때 `Combine`이 사용된다.
@@ -288,8 +293,13 @@ builder.Combine(
 #### While, For
 
 ``` fsharp
-member While: (unit -> bool) * Delayed<'T> -> M<'T> // or (unit -> bool) * Delayed<unit> -> M<unit>
-member For: seq<'T> * ('T -> M<'U>) -> M<'U> // or seq<'T> * ('T -> M<'U>) -> seq<M<'U>>
+// 이하의 타입들 중 하나 선택
+member While: (unit -> bool) * Delayed<'T> -> M<'T>
+member While: (unit -> bool) * Delayed<unit> -> M<unit>
+
+// 이하의 타입들 중 하나 선택
+member For: seq<'T> * ('T -> M<'U>) -> M<'U>
+member For: seq<'T> * ('T -> M<'U>) -> seq<M<'U>>
 ```
 
 이름 그대로 계산식 내에서 `while`, `for` 루프로 변환된다. 사용법도 동일하다.
@@ -410,7 +420,7 @@ seq.Combine(seq.YieldFrom([1; 2; 3]), seq.Yield(4))
 
 일단 `Return`의 경우에는 반드시 필요해보인다. 계산식이 계산 결과를 내지 못한다면 무슨 의미가 있을까? 
 
-그런데 `Bind`의 경우는 이야기가 좀 다르다. 모나드에서 `Bind`는 반드시 필요하다. `Bind` 함수가 있어야 모나드를 유지하면서 안의 값을 마음대로 변경할 수 있기 때문이다. 즉, `Bind`가 없다면 우리는 모나드 내의 변수들을 다룰 수 없게 된다.
+그런데 `Bind`의 경우는 이야기가 좀 다르다. 모나드에서 `Bind`는 반드시 필요하다. `Bind` 함수가 있어야 모나드를 유지하면서 안의 값을 마음대로 변경할 수 있기 때문이다. 즉, `Bind`가 없다면 우리는 계산식 내부의 값들을 이전 결과를 참고하여 조작할 수 없게 된다.
 
 그런데 F#의 계산식은 모나드가 아니라 계산식이다. 말장난같지만 `Bind` 함수의 구현은 필수가 아니라는 점이 이를 증명한다. 실제로 앞에서 `seq`와 `query`는 `let!`을 사용할 수 없다고 했었는데 그 이유가 바로 `seq`와 `query`는 `Bind`를 구현하지 않았기 때문이다. `Bind`가 없으니 그 시작점이 될 `let!` 또한 사용 불가능한 것이다. 
 
