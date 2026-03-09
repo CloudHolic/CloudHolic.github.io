@@ -6,11 +6,11 @@ tags: ["Quantum"]
 math: true
 ---
 
-### Before starting
+## Before starting
 
 이 시리즈는 양자 알고리즘을 다루고 있지만 양자역학을 다루진 않는다. 양자 알고리즘을 이해하는 데에 있어 필요한 최소한의 선수지식을 철저히 내 시선에서 이해한 대로 작성하는 연재글이니 참고할 것.
 
-### Simple Prerequisites
+## Simple Prerequisites
 
 본격적인 이야기를 시작하기 전에, 양자 컴퓨팅에서 잘 써먹는 양자의 특징적인 현상 몇 개를 먼저 정리한다.  
 
@@ -22,7 +22,7 @@ math: true
 이 얽힘 상태를 이용해서, 한 쪽의 상태를 측정해서 고정시키면 여기에 얽혀있는 다른 쪽의 양자의 정보를 바탕으로 측정된 양자의 정보를 복원할 수 있다. 이건 마치 양자가 거리와 시간을 무시하고 복사된 듯한 효과를 주기에 **양자 순간이동(Teleportation)**으로 불리지만, 양자가 물리적으로 순간이동하는 것은 아니고 그 양자가 갖고 있던 정보만 옮겨진다는 개념이다.  
 
 
-### Qubit
+## Qubit
 
 고전적인(즉, Non-quantum) 컴퓨터에서 정보를 다루는 최소 단위는 bit이며 다들 알겠지만 이 bit가 다룰 수 있는 정보는 0과 1의 2가지이다.  
 
@@ -51,11 +51,11 @@ $$\ket{+} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1},\space\space\k
 $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$  
 
 
-### Quantum Logic Gate
+## Quantum Logic Gate
 
 지금까지는 qubit 1개에 대해서만, 그것도 어떤 식으로 표현하는가에 대해서만 알아봤다. qubit는 어디까지나 정보만을 가지고 있으므로 이제 이 정보를 어떤 연산을 이용해서 다룰 수 있는지 알아보자.
 
-#### Unitary operation
+### Unitary operation
 
 1개의 qubit는 2x1 행렬로 표기되므로 이를 대상으로 하는 unitary operation은 2x2 행렬로 표기된다.
 
@@ -79,7 +79,7 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
     $$R_{z}(\theta)  = \left[\begin{array}{cc}e^{\frac{-i\theta}{2}}&0\\0&e^{\frac{i\theta}{2}}\end{array}\right]$$  
 
 
-#### Binary operation
+### Binary operation
 
 당연한 말이지만, 2개 이상의 qubit를 동시에 다룰 경우에는 이들의 tensor product로 표현한다. 즉 binary operation은 4x4 행렬로 표기된다.
 
@@ -92,7 +92,7 @@ $$\ket{\Psi} = \cos\theta\ket{0} + \sin\theta e^{i\varphi}\ket{1}$$
     $$SWAP = \left[\begin{array}{cccc}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{array}\right]$$  
     이름에서도 잘 드러나듯 두 qubit의 값을 바꿔준다.
 
-#### Ternary operation
+### Ternary operation
 
 위와 같은 이유로 ternary operation은 8x8 행렬로 표기된다.
 

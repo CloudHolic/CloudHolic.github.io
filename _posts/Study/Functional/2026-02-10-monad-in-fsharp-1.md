@@ -6,11 +6,11 @@ tags: ["Functional", "F#"]
 math: true
 ---
 
-### Before starting
+## Before starting
 
 [저번 글](https://cloudholic.github.io/posts/monad-1/)에서 모나드에 대해 알아봤다. 모나드를 한 마디로 요약하면 side-effect를 함수형 언어의 방식으로 처리하는 이론적 배경이자 디자인 패턴이다. 그만큼 함수형 언어에서의 핵심 개념이기 때문에 함수형이 주인 언어에서는 이 모나드를 사용할 다양한 방법들을 매우 직설적으로 제공해준다. 실제로 하스켈에서는 이 모나드가 이름 그대로 Monad라고 정의되어 있으며, 그 내용도 모나드의 수학적 정의와 크게 다르지 않다. 그런데 특이하게 .NET 기반의 함수형 언어인 F#에서는 모나드라는 단어가 직접적으로 표시되지 않고 숨겨져 있다.
 
-### Computation Expression
+## Computation Expression
 
 우선 F#에선 모나드 대신 "Computation Expression", 즉 계산식이라는 명칭을 사용한다. 명칭뿐만 아니라 사용하는 형태도 좀 특이한데, 다음과 같이 사용한다.
 
@@ -35,7 +35,7 @@ let result =
 그럼 이제 F#에서 기본으로 제공하는 아래 4가지 계산식들을 보면서 실제 사용법을 파악해보자.
 
 
-#### seq
+### seq
 
 `seq` 계산식은 Sequence Builder이다. 즉, 계산식 안의 구문을 통해 `seq<'T>` 타입을 만들어내며, 이 `seq<'T>`라는 타입은 배열, 리스트, 기타 다른 모든 컬렉션의 부모격이 된다. 즉, C#의 `IEnumerable<T>`와 동일하다고 볼 수 있다. 
 
@@ -62,7 +62,7 @@ let seqC = seq {
 그 외에도 `Seq.empty`, `Seq.init`, `Seq.singleton` 등 다양한 보조 함수들이 정의되어 있다. 그런데 주의할 점은 `seq`에는 `let!` 바인딩이 존재하지 않는다. 이는 `seq`가 값 생성에 특화되어서 이전 값에 의존하는 순차적 계산이 필요하지 않기 때문이다. 이에 대한 자세한 내용은 후술한다.
 
 
-#### async
+### async
 
 `async`는 요즘 대부분의 언어는 다 갖고 있다는 바로 그 비동기 지원과 관련된 계산식이다. 사실 생각해보면 당연한게, 비동기 작업이야말로 정말 대표적인 "필수불가결한 side-effect"에 해당한다. 그러니 이를 함수형 언어의 방식으로 처리하려면 모나드 형태로 처리할 수 밖에 없다.
 
@@ -103,12 +103,12 @@ let! (result2 : byte[]) = stream.AsyncRead(bufferSize)
 우선 계산식 안의 값을 직접 바인딩을 시켜주는 `let!`의 특성상 `async` 계산식을 `let!`으로 바인딩하게 되면 C#에서의 `await`와 같은 효과를 내게 된다. 즉, 해당 비동기 작업을 완료하고 그 값을 가져올 때까지 기다리게 된다. 또한 `use!` 키워드를 쓸 수 있는데, 이는 C#에서의 `await using`과 동일하다. 즉, `use`는 C#의 `IDisposable`을, `use!`는 C#의 `IAsyncDisposable`에 대응된다고 보면 된다.
 
 
-#### task
+### task
 
 `task` 계산식 역시 C#에서 너무나도 익숙한 `Task` 관련 지원이 포함되어 있다. 그런데 왜 `async`와 `task`가 분리되었을까? 실제로 둘은 하는 일이 비슷하고 C#에서도 둘을 크게 구분하진 않는다. F# 공식 문서에서는 .NET의 타 언어와의 interop, 혹은 (특히 C#의) `Task`와 직접적으로 연동할 일이 있을때 `task` 계산식을 쓰라고 권장하고 있다. 그 외에는 `async` 계산식과 개념적으로도 동일하고, 쓰는 것도 동일하다. 
 
 
-#### query
+### query
 
 `query`는 LINQ를 지원하기 위한 계산식이다. 즉, 안에서 C#에서의 그 LINQ 문법을 사용하고, 그 결과를 얻어낼 수 있다. `seq`에서 `yield`를 통해 하나씩 얻어내던 것처럼, `query`에서는 `select`로 같은 역할을 수행할 수 있다.
 
@@ -122,7 +122,7 @@ query {
 `query`는 `seq`와 비슷하게 `let!`이 제공되지 않는다. 그 대신 `query` 안에서 쓸 수 있는 다양한 전용 연산자들이 Query Operator라는 이름으로 제공되지만, 이 글에서 이걸 다루진 않는다. 해당 내용들은 LINQ나 SQL에 익숙하다면 어렵지 않게 사용할 수 있으니 궁금하면 관련 문서를 찾아보자.
 
 
-### Custom Computation Expression
+## Custom Computation Expression
 
 그럼 F#에서 지원하는 이 기본 계산식들 외에 추가로 계산식을 만들고 싶으면 어떻게 해야 할까? 아래와 같이 Builder `type`을 만들면 된다.
 
@@ -147,7 +147,7 @@ let result =
 
 그럼 이제 정의된 함수들 중 중요한 것들만 살펴보자.
 
-#### Bind
+### Bind
 
 ``` fsharp
 member Bind: M<'T> * ('T -> M<'U>) -> M<'U>
@@ -167,7 +167,7 @@ builder.Bind(m, fun x -> builder.Return(x + 1))
 즉, 위의 코드에서 `builder { ... }` 구문과 `builder.Bind(...)` 구문은 동일하다.
 
 
-#### Return, ReturnFrom
+### Return, ReturnFrom
 
 ```fsharp
 member Return: 'T -> M<'T>
@@ -199,7 +199,7 @@ builder.ReturnFrom(someComputation)
 ```
 
 
-#### Zero
+### Zero
 
 ``` fsharp
 member Zero: unit -> M<'T>
@@ -220,7 +220,7 @@ else
 ```
 
 
-#### MergeSources
+### MergeSources
 
 ``` fsharp
 member MergeSources: (M<'T> * M<'U>) -> M<'T * 'U>
@@ -237,7 +237,7 @@ builder {
 ```
 
 
-#### Delay, Run
+### Delay, Run
 
 ``` fsharp
 member Delay: (unit -> M<'T>) -> Delayed<'T>
@@ -266,7 +266,7 @@ builder.Run(builder.Delay(fun () -> builder.Return(42)))
 위의 코드에선 `builder` 계산식의 결과를 `result`에 즉시 바인딩하도록 요구하고 있으니 계산식으로 감싸서 주는 것이 아니라 `Run`을 수행하게 된다.
 
 
-#### Combine
+### Combine
 
 ``` fsharp
 // 이하의 타입들 중 하나 선택
@@ -290,7 +290,7 @@ builder.Combine(
 ```
 
 
-#### While, For
+### While, For
 
 ``` fsharp
 // 이하의 타입들 중 하나 선택
@@ -323,7 +323,7 @@ builder.For([1..10], fun x -> operation x)
 ```
 
 
-#### TryWith, TryFinally
+### TryWith, TryFinally
 
 ``` fsharp
 member TryWith: Delayed<'T> * (exn -> M<'T>) -> M<'T>
@@ -363,7 +363,7 @@ builder.TryFinally(
 그리고 위 두 예제 모두 계산식을 선언만 했지 그 값을 즉시 받아오는 코드가 없으므로 `try` 본문이 `Delay`로 변환되었음을 알 수 있다.
 
 
-#### Using
+### Using
 
 ``` fsharp
 member Using: 'T * ('T -> M<'U>) -> M<'U> when 'T :> IDisposable
@@ -384,7 +384,7 @@ builder.Using(
 ```
 
 
-#### Yield, YieldFrom
+### Yield, YieldFrom
 
 ``` fsharp
 member Yield: 'T -> M<'T>
@@ -414,7 +414,7 @@ seq.Combine(seq.YieldFrom([1; 2; 3]), seq.Yield(4))
 ```
 
 
-### Computation Expression != Monad
+## Computation Expression != Monad
 
 위에서 어떻게 계산식을 만들 수 있는지 대략 살펴봤다. 그런데 가만 살펴보면 이상한 점이 있다. 위의 모든 함수들의 구현은 전부 선택적 요소라고 했는데, 그러면 모나드의 핵심 요소인 `Return`과 `Bind`를 구현하지 않아도 될까? 
 

@@ -6,11 +6,11 @@ tags: ["Quantum"]
 math: true
 ---
 
-### Before starting
+## Before starting
 
 이 시리즈는 양자 알고리즘을 다루고 있지만 양자역학을 다루진 않는다. 양자 알고리즘을 이해하는 데에 있어 필요한 최소한의 선수지식을 철저히 내 시선에서 이해한 대로 작성하는 연재글이니 참고할 것.
 
-### Definition
+## Definition
 
 일반적으로 양자 컴퓨터에는 기존에 존재하는 모든 NP 문제를 다항시간 안에 해결해줄 것이라는 환상이 있다. 정말 그럴까?  
 양자 알고리즘으로 해결되는 문제의 복잡도 분류를 알아보고, 이를 고전 알고리즘에서의 복잡도 분류와 비교해보자.  
@@ -23,7 +23,7 @@ P에 대응되는 양자 알고리즘의 분류는 **EQP**이다. EQP(Exact Quan
 
 **QMA**(Quantum Merlin Arthur)는 양자 컴퓨터가 다항식 시간 내에 검증할 수 있는 문제들의 집합을 뜻한다. 고전 알고리즘의 NP와 비슷한 분류로, 실제로 NP와 비슷하게 QMA는 다시 QMA-Hard와 QMA-Complete로 나눌 수 있다. 그 정의마저도 NP-Hard, NP-Complete와 동일하다. 즉, 모든 QMA 문제를 양자 컴퓨터가 다항식 시간 내에 A 문제로 reduce/transform 할 수 있는 경우 그 A 문제를 QMA-Hard라고 하며, QMA이자 QMA-Hard인 문제를 QMA-Complete라고 한다.  
 
-### Comparison
+## Comparison
 
 그럼 이제 P/NP와 BQP/QMA 간의 관계를 생각해보자. 일단 명확히 해야 할 점은, 위의 네 집합 간의 관계는 아직 아무것도 증명되진 않았다. 다만 지금 시점에서 확실히 밝혀진 정보들, 그리고 이를 바탕으로 대부분의 사람들이 추측하는 관계를 정리해보면 다음과 같다.  
 
