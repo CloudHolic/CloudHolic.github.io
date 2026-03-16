@@ -1,5 +1,5 @@
 ---
-title: "Monad in F# 1"
+title: "Monad in F# 1 - Computation Expression"
 date: 2026-02-10 12:20:30 +0900
 categories: ["Study", "Functional"]
 tags: ["Functional", "F#"]

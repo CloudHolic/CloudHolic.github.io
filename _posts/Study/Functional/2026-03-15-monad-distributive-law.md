@@ -1,5 +1,5 @@
 ---
-title: "Monad Ex - Distributive Law"
+title: "Monad 4 - Distributive Law"
 date: 2026-03-15 23:49:00 +0900
 categories: ["Study", "Functional"]
 tags: ["Functional"]
@@ -8,7 +8,7 @@ math: true
 
 ## Before starting
 
-이 글은 [3편](https://cloudholic.github.io/posts/monad-3/)에서 다뤘던 내용 중, 모나드 간의 분배법칙에 관한 보충 설명이다. 굳이 해당 내용을 글 하나로 뺄 정도로, 모나드를 이해하고자 하는 원래 취지와도 살짝 동떨어진 내용이기도 하다.
+이 글은 [3편](https://cloudholic.github.io/posts/monad-3/)에서 다뤘던 내용 중, 모나드 간의 분배법칙에 관한 보충 설명이다. 굳이 해당 내용을 글 하나로 뺄 정도로, 꽤나 길고 복잡한 내용이 섞여 있다.
 
 
 ## Functor, Applicative의 합성
@@ -16,7 +16,7 @@ math: true
 먼저, 3편에서는 Functor와 Applicative는 합성에 대해 닫혀있다고 했는데, 왜 그런지부터 확인해보자.
 
 
-Functor의 경우, 두 Functor F, G를 합성하면 다음과 같이 된다.
+Functor의 경우, 두 Functor F, G를 합성해도 다음과 같이 Functor를 구현할 수 있다.
 
 ``` haskell
 fmap :: (a -> b) -> F(G a) -> F(G b)
@@ -26,7 +26,7 @@ fmap f = fmap_F (fmap_G f)
 즉, `fmap`의 인자로 주어진, 값 변환 함수 `a -> b`를 안쪽까지 밀어넣기만 하면 되므로, Functor는 합성 연산에 대해서 닫혀있음을 알 수 있다.
 
 
-Applicative의 경우, 두 Applicative F, G를 합성하면 다음과 같이 된다.
+Applicative의 경우, 두 Applicative F, G를 합성해도 다음과 같이 Applicative를 구현할 수 있다.
 
 ``` haskell
 pure :: a -> F(G a)
@@ -93,4 +93,9 @@ join_N :: N(N a) -> N a
 
 ## Distributive Law between Monads
 
-근데 모나드 간의 분배법칙이 성립하는지 아닌지는 직관적으로 알긴 너무 어렵다. 그래서 실제로 어떻게 증명되었나를 살펴볼 건데, 여기서는 2006년에 발표된 Varacca & Winskel의 논문 "[Distributing Probability over Non-determinism](https://dl.acm.org/doi/abs/10.1017/s0960129505005074)"에서 제시된 방법을 소개할 것이다. 
+근데 모나드 간의 분배법칙이 성립하는지 아닌지는 직관적으로 알긴 너무 어렵다. 그래서 실제로 어떻게 증명되었나를 살펴볼 건데, 여기서는 2006년에 발표된 Varacca & Winskel의 논문 [Distributing Probability over Non-determinism](https://www.researchgate.net/publication/220173520_Distributing_Probabililty_over_Nondeterminism)에서 제시된 방법을 소개할 것이다. 
+
+
+먼저, $\lambda: D \circ P \Rightarrow P \circ D$
+
+어떤 것이 불가능함을 증명하는 가장 대표적인 방법은 귀류법이다. 또한 불가능을 증명할 때에는 반례를 하나 찾기만 해도 충분하다. 이들의 증명은 여기서 출발한다.
