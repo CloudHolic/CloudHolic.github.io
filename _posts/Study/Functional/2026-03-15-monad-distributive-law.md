@@ -96,6 +96,32 @@ join_N :: N(N a) -> N a
 근데 모나드 간의 분배법칙이 성립하는지 아닌지는 직관적으로 알긴 너무 어렵다. 그래서 실제로 어떻게 증명되었나를 살펴볼 건데, 여기서는 2006년에 발표된 Varacca & Winskel의 논문 [Distributing Probability over Non-determinism](https://www.researchgate.net/publication/220173520_Distributing_Probabililty_over_Nondeterminism)에서 제시된 방법을 소개할 것이다. 
 
 
-먼저, $\lambda: D \circ P \Rightarrow P \circ D$
-
 어떤 것이 불가능함을 증명하는 가장 대표적인 방법은 귀류법이다. 또한 불가능을 증명할 때에는 반례를 하나 찾기만 해도 충분하다. 이들의 증명은 여기서 출발한다.
+
+논의를 시작하기 앞서, $\lambda: D \circ P \Rightarrow P \circ D$라는 분배법칙이 성립하기 위해서는 다음의 4개의 조건을 모두 만족해야 한다는 공리가 존재한다.
+
+- A1: $\lambda \circ \eta^D_{P(X)} = P(\eta^D_X)$
+- A2: $\lambda \circ D(\eta^P_X) = \eta^P_{D(X)}$
+- A3: $\lambda \circ \mu^D_{P(X)} = P(\mu^D_X) \circ \lambda_{D(X)} \circ D(\lambda_X)$
+- A4: $\lambda \circ D(\mu^P_X) = \mu^P_{D(X)} \circ (P(\lambda_X)) \circ \lambda_{P(X)}$
+
+여기서 $\eta$는 각 모나드의 unit을 나타내는 자연 변환이고, $\mu$는 모나드의 곱셈을 의미하는 자연 변환이다. 위의 4가지 공리는 각각 D의 unit 보존, P의 unit 보존, D의 곱셈 보존, P의 곱셈 보존을 의미한다.
+
+
+즉, 두 모나드를 적절히 찾아서 이들은 분배법칙이 성립하지 않는다는 것을 증명하면 되는 것이고, 이들 간의 분배법칙이 성립하지 않는다는 것을 증명하기 위해 귀류법을 적용하여 일단 된다고 가정하고 모순을 이끌어낼 것이다.
+
+여기서 정한 두 개의 모나드는 다음과 같다.
+
+- Finite Nonempty Powerset Monad P: 확률과 무관하게 시스템이 여러 선택지 중 하나를 선택하는 상황
+- Finite Valuation Monad D: $p$의 확률로 A를, $(1-p)$의 확률로 B를 선택하는 등의 확률적 상황
+
+즉, 이들 사이의 분배법칙이 성립한다는 소리는, "집합들의 확률분포"를 "확률분포들의 집합"으로 바꿀 수 있다는 이야기이다. 그럼 이러한 조건을 만족하는 분배법칙 $\lambda$가 무엇을 만족해야 하는지 살펴보자.
+
+
+### Step 1
+
+위의 공리 A1에 의해서, 집합 $S$에서 확률이 1이 되는 point mass $\sigma_S$에 대해 $\lambda$는 다음을 만족해야 한다.
+
+$$\lambda_X(\sigma_S) = \lbrace \sigma_x \mid x \in S \rbrace$$
+
+예를 들어 $S = \lbrace a, b \rbrace$라면 $\lambda_X(\sigma_{\lbrace \lbrace a, b \rbrace \rbrace}) = \lbrace \sigma_a, \sigma_b \rbrace$가 된다.
