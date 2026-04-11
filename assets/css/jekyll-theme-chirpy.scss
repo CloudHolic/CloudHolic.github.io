@@ -1,0 +1,17 @@
+---
+---
+
+@use 'main {%- if jekyll.environment == 'production' -%} .bundle {%- endif -%} ';
+
+:root {
+    --custom-heading-marker-color: #c0392b;
+}
+
+[data-mode="dark"] {
+    --custom-heading-marker-color: #e74c3c;
+}
+
+h3.important::before {
+    content: "★ ";
+    color: var(--custom-heading-marker-color);
+}
