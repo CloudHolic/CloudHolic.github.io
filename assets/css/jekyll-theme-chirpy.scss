@@ -11,6 +11,10 @@
     --custom-heading-marker-color: #e74c3c;
 }
 
+h3.important {
+    color: var(--custom-heading-marker-color);
+}
+
 h3.important::before {
     content: "★ ";
     color: var(--custom-heading-marker-color);
